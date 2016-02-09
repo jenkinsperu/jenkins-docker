@@ -1,0 +1,25 @@
+= Jenkins Docker
+
+Ejecutar Jenkins sobre Docker y reutilizar Docker en la instancia de Jenkins.
+
+== Construir la imagen
+
+```
+docker build --no-cache --rm=true -t jenkinsperu/jenkins-docker-server .
+```
+
+== Ejecutar la imagen
+
+```
+docker run -p 8080:8080 \
+-v ~/docker-repository/ci_env/jenkins:/var/jenkins_home \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /usr/local/bin/docker:/bin/docker.io \
+jenkinsperu/jenkins-docker-server
+```
+
+== Construir y Ejecutar la imagen usando Docker Compose
+
+```
+docker-compose up
+```
